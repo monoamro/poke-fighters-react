@@ -13,7 +13,7 @@ const Pokemons = () => {
 
   return (
     <div>
-      {pokemons?.map((pokemon, index) => {
+      {pokemons?.slice(0, 10).map((pokemon, index) => {
         return <Card key={index} pokemon={pokemon} />;
       })}
     </div>
