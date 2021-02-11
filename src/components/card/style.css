@@ -1,0 +1,17 @@
+.card {
+  width: 250px;
+  margin: 20px 5px 0px 5px;
+  height: 40px;
+  padding: 7px 15px 7px 15px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  background-color: #00a068;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.poke-name {
+  color: black;
+}
