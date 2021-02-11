@@ -1,0 +1,41 @@
+p {
+    margin: 0;
+}
+
+.Poke {
+    width: 70%;
+    display: flex;
+    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-gap: 10px;
+    flex-direction: column;
+}
+.title_name {
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: 800;
+}
+.title_types {
+    display: flex;
+    justify-content: center;    
+}
+.title_type {
+    padding: 5px 10px;
+    margin: 10px 10px 10px 0;
+    border-radius: 5px;
+    background: cyan;
+    color: #fff;
+}
+
+
+.title_info {
+    margin-left: 10px;
+}
+
+.title_data {
+    padding-bottom: 10px;
+}
+
+.title_data .title {
+    font-weight: 700;
+}
