@@ -1,0 +1,14 @@
+.cards-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.cards-flex {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+body {
+  background-color: #a91c22;
+}
