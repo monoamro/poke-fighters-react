@@ -1,12 +1,18 @@
 import axios from 'axios';
 import css from "./poke.css";
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react';
+import ReactCardFlip from 'react-card-flip';
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import Api from '../Api';
 
+const CardStyle = {
+  border: "1px solid black",
+  padding: "20px",
+  margin: "20px",
+  width: "200px",
+  height: "300px"
+};
 
 const Poke = ({pokemon}) => {
     /*const [pokemon, setPokemon] = useState();
@@ -22,26 +28,42 @@ const Poke = ({pokemon}) => {
     
     console.log(pokemon)
     */
-    return (
-      <div className = 'Poke'>
-      <Card border="primary"style={{ width: '30rem' }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-          <Card.Title> <p className='title_name'>Name</p>
-         <p>{pokemon.name.english}</p>
-         <p className='title_types'>Type</p></Card.Title>
-          <Card.Text>
-                  
-           
-               
-      <div className ='title_types'>
+   const [isFlipped, setIsFlipped] = React.useState(false);
+   
+   return(
+
+    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+      <div
+        style={CardStyle}
+        onMouseEnter={() => setIsFlipped((prev) => !prev)}
+        className="CardFront"
+      >
+        <div>
+        <div className = 'Poke'>
         
-    {pokemon.type.map((type) => {
+            
+      
+        <p className='title_name'>Name</p>
+        <p>{pokemon.name.english}</p>
+        <p className='title_types'>Type</p>
+        {pokemon.type.map((type) => {
       return <div className ='title_type'><p>{type}</p></div>;
       
     })}
-    </div>
-     <div className='title_info'>
+         
+        </div>    
+          
+          
+         
+        </div>
+      </div>
+      <div
+        style={CardStyle}
+        onMouseLeave={() => setIsFlipped((prev) => !prev)}
+        className="CardBack"
+      >
+    
+    <div className='title_info'>
      <div className="title_data title_data--weight">
     <p>Attack: {pokemon.base.Attack}</p>
     </div>
@@ -60,15 +82,17 @@ const Poke = ({pokemon}) => {
     <div className="title_data title_data--weight">
     <p>Speed: {pokemon.base.Speed}</p>
     </div>
-    </div>
+      </div>
     
+  </div>
+    </ReactCardFlip>
     
-    </Card.Text>
-    </Card.Body>
-    </Card>
-    </div>
+   );
+  };
+       
+    
    
-        )
-}
+      
+
 
 export default Poke;
