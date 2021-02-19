@@ -8,6 +8,9 @@ import Api from '../Api';
 
 const CardStyle = {
   border: "1px solid black",
+  display: "flex",
+  "flex-direction": "column",
+  "justify-content": "space-around",
   padding: "20px",
   margin: "20px",
   width: "200px",
@@ -15,93 +18,81 @@ const CardStyle = {
 };
 
 const Poke = () => {
-    const [pokemon, setPokemon] = useState();
-    const [image, setImage] = useState();
-    const {id} = useParams();
-    useEffect(() => {
-      Api.getById(id)
+  const [pokemon, setPokemon] = useState();
+  const [image, setImage] = useState();
+  const {id} = useParams();
+  useEffect(() => {
+    Api.getById(id)
       .then(res => {
-        setPokemon(res.data)
+        setPokemon(res.data[0])
       })
       .catch(e => console.error(e))
-    }, [id])    
-    
-    
-      useEffect(() => {
-        if (pokemon  ) {
+  }, [])    
+
+
+  useEffect(() => {
+    if (pokemon) {
       axios
         .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`)
         .then((result) => setImage(result.data.sprites.front_default))
-        .catch((error) => console.log(error));}
-    }, [pokemon]);
-    
+        .catch((error) => console.log(error));
+    }
+  }, [pokemon]);
 
+  const [isFlipped, setIsFlipped] = useState(false);
 
+  return(
+    pokemon ? 
+    <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+      {/* Card-Front */}
+      <div
+      style={CardStyle}
+      onMouseEnter={() => setIsFlipped((prev) => !prev)}
+      className="CardFront"
+      >
+        <div>
+          <div className = 'Poke'>
+          <p>{pokemon.name.english}</p>
+          {image ? <img src={image}/> : null}
+          {pokemon.type.map((type) => {
+            return <div className ='title_type'><p>{type}</p></div>;
+            })}
+          </div>    
+        </div>
+      </div>
 
-    const [isFlipped, setIsFlipped] = React.useState(false);
-   
-   return(
-     pokemon ? <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
-     <div
-       style={CardStyle}
-       onMouseEnter={() => setIsFlipped((prev) => !prev)}
-       className="CardFront"
-     >
-       <div>
-       <div className = 'Poke'>
-       
-           
-     
-       <p className='title_name'>Name</p>
-       <p>{pokemon.name.english}</p>
-       {image ? <img src={image}/> : null}
-       
-       <p className='title_types'>Type</p>
-       {pokemon.type.map((type) => {
-     return <div className ='title_type'><p>{type}</p></div>;
-     
-   })}
-     
-     
-     
-       
-       </div>    
-                
-        
-       </div>
+      {/* Card-Back */}
 
-     </div>
-     
-     <div
-       style={CardStyle}
-       onMouseLeave={() => setIsFlipped((prev) => !prev)}
-       className="CardBack"
-     >
-   
-   <div className='title_info'>
-    <div className="title_data title_data--weight">
-   <p>Attack: {pokemon.base.Attack}</p>
-   </div>
-   <div className="title_data title_data--weight">
-   <p>Defense: {pokemon.base.Defense}</p>
-   </div>
-   <div className="title_data title_data--weight">
-   <p>Hit points: {pokemon.base.HP}</p>
-   </div>
-   <div className="title_data title_data--weight">
-   <p>Special Attack: {pokemon.base["Sp. Attack"]}</p>
-   </div>
-   <div className="title_data title_data--weight">
-   <p>Special Defense: {pokemon.base["Sp. Defense"]}</p>
-   </div>
-   <div className="title_data title_data--weight">
-   <p>Speed: {pokemon.base.Speed}</p>
-   </div>
-     </div>
-   
- </div>
-   </ReactCardFlip> : <p>Loading pokemon</p>    
-   );
+      <div
+      style={CardStyle}
+      onMouseLeave={() => setIsFlipped((prev) => !prev)}
+      className="CardBack"
+      >
+        <div className='title_info'>
+          <div className="title_data">
+            Attack: {pokemon.base.Attack}
+          </div>
+          <div className="title_data">
+            Defense: {pokemon.base.Defense}
+          </div>
+          <div className="title_data">
+            Hit points: {pokemon.base.HP}
+          </div>
+          <div className="title_data">
+            Sp. Attack: {pokemon.base["Sp. Attack"]}
+          </div>
+          <div className="title_data">
+            Sp. Defense: {pokemon.base["Sp. Defense"]}
+          </div>
+          <div className="title_data">
+            Speed: {pokemon.base.Speed}
+          </div>
+        </div>
+      </div>
+    </ReactCardFlip> 
+    : 
+    <p>Loading pokemon</p>    
+  );
   };
 
 export default Poke;
