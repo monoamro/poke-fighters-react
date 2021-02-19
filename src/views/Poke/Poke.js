@@ -27,7 +27,7 @@ const Poke = () => {
         setPokemon(res.data[0])
       })
       .catch(e => console.error(e))
-  }, [])    
+  }, [id])    
 
 
   useEffect(() => {
@@ -53,7 +53,7 @@ const Poke = () => {
         <div>
           <div className = 'Poke'>
           <p>{pokemon.name.english}</p>
-          {image ? <img src={image}/> : null}
+          {image ? <img src={image} alt="Pokemon Image"/> : null}
           {pokemon.type.map((type) => {
             return <div className ='title_type'><p>{type}</p></div>;
             })}
