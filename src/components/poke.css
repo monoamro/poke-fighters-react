@@ -1,6 +1,12 @@
 p {
   margin: 0;
 }
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 .Poke {
   width: 70%;
