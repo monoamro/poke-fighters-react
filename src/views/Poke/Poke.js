@@ -1,10 +1,10 @@
 import axios from 'axios';
-import css from "./poke.css";
+import "./poke.css";
 import React from 'react';
 import ReactCardFlip from 'react-card-flip';
 import {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
-import Api from '../Api';
+import Api from '../../Api';
 
 const CardStyle = {
   border: "1px solid black",
@@ -13,8 +13,8 @@ const CardStyle = {
   "justify-content": "space-around",
   padding: "20px",
   margin: "20px",
-  width: "200px",
-  height: "300px"
+  width: "250px",
+  height: "350px"
 };
 
 const Poke = () => {
