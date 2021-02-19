@@ -16,6 +16,7 @@ const CardStyle = {
 
 const Poke = () => {
     const [pokemon, setPokemon] = useState();
+    const [image, setImage] = useState();
     const {id} = useParams();
     useEffect(() => {
       Api.getById(id)
@@ -24,8 +25,19 @@ const Poke = () => {
       })
       .catch(e => console.error(e))
     }, [id])    
-    console.log(pokemon)
     
+    
+      useEffect(() => {
+        if (pokemon  ) {
+      axios
+        .get(`https://pokeapi.co/api/v2/pokemon/${pokemon.id}`)
+        .then((result) => setImage(result.data.sprites.front_default))
+        .catch((error) => console.log(error));}
+    }, [pokemon]);
+    
+
+
+
     const [isFlipped, setIsFlipped] = React.useState(false);
    
    return(
@@ -42,18 +54,24 @@ const Poke = () => {
      
        <p className='title_name'>Name</p>
        <p>{pokemon.name.english}</p>
+       {image ? <img src={image}/> : null}
+       
        <p className='title_types'>Type</p>
        {pokemon.type.map((type) => {
      return <div className ='title_type'><p>{type}</p></div>;
      
    })}
-        
+     
+     
+     
+       
        </div>    
-         
-         
+                
         
        </div>
+
      </div>
+     
      <div
        style={CardStyle}
        onMouseLeave={() => setIsFlipped((prev) => !prev)}
