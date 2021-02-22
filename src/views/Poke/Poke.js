@@ -43,7 +43,7 @@ const Poke = () => {
 
   return pokemon ? (
     <div className="container-card">
-      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal">
+      <ReactCardFlip isFlipped={isFlipped} flipDirection="horizontal" >
         {/* Card-Front */}
         <div
           style={CardStyle}
