@@ -1,7 +1,8 @@
 p {
   margin: 0;
 }
-body {
+
+.container-card {
   height: 100vh;
   display: flex;
   justify-content: center;
