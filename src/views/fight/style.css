@@ -1,0 +1,51 @@
+.flex-fight {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.info-fight {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-right: 1em;
+}
+
+.poke-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 800px;
+  max-height: 90vh;
+  overflow-y: scroll;
+}
+
+button {
+  background-color: #385eab;
+  font-family: "Press Start 2P", cursive, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif !important;
+  padding: 1em;
+  border-radius: 1em;
+  border: 1px solid, gray;
+}
+
+.card {
+  width: 200px;
+  margin: 20px 5px 0px 5px;
+  height: 40px;
+  padding: 7px 15px 7px 15px;
+  border-radius: 10px;
+  transition: all 0.2s ease-in-out;
+  background-color: #00a068;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.poke-name {
+  color: black;
+}

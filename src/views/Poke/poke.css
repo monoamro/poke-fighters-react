@@ -1,11 +1,17 @@
 p {
   margin: 0;
 }
-body {
+
+.container-card {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.container-card button {
+  margin: 1em;
 }
 
 .Poke {
@@ -155,4 +161,12 @@ body {
 
 .flashcard-option:first-child {
   margin-top: 0;
+}
+
+.react-card-back > div {
+  background-color: #00a068 !important;
+}
+
+.react-card-front > div {
+  background-color: #00a068 !important;
 }
